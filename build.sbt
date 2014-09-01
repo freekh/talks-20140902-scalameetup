@@ -8,4 +8,4 @@ val dataFiles = taskKey[Seq[File]]("My unmanaged data files")
 
 dataFiles := file("data").listFiles.toSeq //or: new java.io.File()
 
-(unmanagedResources in Test) ++= dataFiles.value //try: ~test
+List(Compile, Test) map { config => (unmanagedResources in config) ++= dataFiles.value } //try: ~test or ~run
